@@ -214,7 +214,7 @@ class Ftp {
      * @param $mode
      * @return bool
      */
-    public function uploadString($fileFrom, $string, $mode=null)
+    public function uploadString($string, $fileTo, $mode=null)
     {
         if($mode == null) {
            $mode = $this->findTransferModeForFile($fileFrom);
