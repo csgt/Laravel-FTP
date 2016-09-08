@@ -89,6 +89,14 @@ Changes the current directory on a FTP server.
 
  - `$directory`: The target directory.
 
+**uploadString($fileFrom, $string, $mode)**
+
+Uploads a string to the FTP server.
+
+ - `$fileFrom`: The local file path.
+ - `$string`: The string to upload.
+ - `$mode`: The transfer mode. Must be either `FTP_ASCII` or `FTP_BINARY`. Automatic mode resolution will be done if no mode is specified.
+
 **uploadFile($fileFrom, $fileTo)**
 
 Uploads a local file to the FTP server.

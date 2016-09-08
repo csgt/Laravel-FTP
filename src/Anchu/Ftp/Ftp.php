@@ -156,6 +156,31 @@ class Ftp {
     }
 
     /**
+     * Upload string
+     *
+     * @param $fileFrom
+     * @param $string
+     * @param $mode
+     * @return bool
+     */
+    public function uploadString($fileFrom, $string, $mode=null)
+    {
+        if($mode == null) {
+           $mode = $this->findTransferModeForFile($fileFrom);
+        }
+
+        try {
+            $stream = fopen('data://text/plain,' . $string,'r');
+            if(ftp_fput($this->connectionId, $fileTo, $stream, $mode))
+                return true;
+            else
+                return false;
+        } catch(\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
      * Upload a file
      *
      * @param $fileFrom
