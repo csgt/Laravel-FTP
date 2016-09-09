@@ -163,14 +163,12 @@ class Ftp {
      * @param $mode
      * @return bool
      */
-    public function uploadString($string, $fileTo, $mode=null)
+    public function uploadString($string, $fileTo, $mode)
     {
-        if($mode == null) {
-           $mode = $this->findTransferModeForFile($fileFrom);
-        }
-
         try {
-            $stream = fopen('data://text/plain,' . $string,'r');
+            $stream = fopen('php://memory', 'r+');
+            fputs($stream, $string);
+            rewind($stream);        
             if(ftp_fput($this->connectionId, $fileTo, $stream, $mode))
                 return true;
             else
